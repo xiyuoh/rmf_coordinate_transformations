@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>rmf_proj</name>
+  <version>0.0.0</version>
+  <description>Package that wraps libproj, a coordinate transformation library</description>
+  <maintainer email="ed.fan@openrobotics.org">Edwin Fan</maintainer>
+  <license>Apache License 2.0</license>
+  <author>Edwin</author>
+
+  <depend>rmf_utils</depend>
+  <depend>PROJ</depend>
+
+  <test_depend>ament_cmake_catch2</test_depend>
+  <test_depend>rmf_cmake_uncrustify</test_depend>
+
+  <export>
+    <build_type>cmake</build_type>
+  </export>
+</package>
