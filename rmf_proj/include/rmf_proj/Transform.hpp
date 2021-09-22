@@ -21,8 +21,7 @@
 #include <rmf_utils/impl_ptr.hpp>
 #include <string>
 
-namespace rmf_proj
-{
+namespace rmf_proj {
 
 //==============================================================================
 // Generic transform between arbitrary coordinate systems
@@ -36,9 +35,9 @@ public:
   ///   Coordinate reference system 1
   ///
   /// \param[in] crs_2
-  ///   Coordinate reference system 
+  ///   Coordinate reference system
   Transform(const std::string& crs_1,
-          const std::string& crs_2);
+    const std::string& crs_2);
 
   /// Transform input coordinate from crs_1 to crs_2
   ///

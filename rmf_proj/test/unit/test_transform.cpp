@@ -1,10 +1,8 @@
-
 #include <rmf_utils/catch.hpp>
 #include <rmf_proj/Transform.hpp>
 
-namespace rmf_proj
-{
-  
+namespace rmf_proj {
+
 SCENARIO("Test Transform")
 {
   GIVEN("Converting between EPSG:3857 and EPSG:3414")
@@ -35,7 +33,7 @@ SCENARIO("Test Transform")
     // Reference:
     // https://epsg.io/transform#s_srs=3857&t_srs=3414&x=11555367.7510120&y=151727.5011460
     WGS84PseudoMercator_SVY21_Transform t;
-    
+
     double wgs84_x = 11555367.751012;
     double wgs84_y = 151727.501146;
 
