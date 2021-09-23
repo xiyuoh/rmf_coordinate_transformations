@@ -1,0 +1,13 @@
+@PACKAGE_INIT@
+
+get_filename_component(rmf_proj_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+
+include(CMakeFindDependencyMacro)
+
+find_dependency(rmf_utils REQUIRED)
+
+if(NOT TARGET rmf_proj::rmf_proj)
+    include("${rmf_proj_CMAKE_DIR}/rmf_proj-targets.cmake")
+endif()
+
+check_required_components(rmf_proj)

@@ -18,6 +18,8 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
 endif()
 
+include(GNUInstallDirs)
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 find_package(ament_cmake_catch2 QUIET)
@@ -74,9 +76,47 @@ if(BUILD_TESTING AND ament_cmake_catch2_FOUND AND rmf_cmake_uncrustify_FOUND)
   )
 endif()
 
+include(CMakePackageConfigHelpers)
+
+set(INSTALL_CONFIG_DIR "${CMAKE_INSTALL_LIBDIR}/rmf_proj/cmake")
+set(PACKAGE_CONFIG_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/rmf_proj-config-version.cmake")
+set(PACKAGE_CONFIG_FILE "${CMAKE_CURRENT_BINARY_DIR}/rmf_proj-config.cmake")
+
+configure_package_config_file(
+  "${CMAKE_CURRENT_LIST_DIR}/cmake/rmf_proj-config.cmake.in"
+  ${PACKAGE_CONFIG_FILE}
+  INSTALL_DESTINATION ${INSTALL_CONFIG_DIR}
+)
+
+write_basic_package_version_file(
+  ${PACKAGE_CONFIG_VERSION_FILE}
+  COMPATIBILITY ExactVersion
+)
+
+install(
+  TARGETS rmf_proj
+  EXPORT  rmf_proj-targets
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
 install(
   DIRECTORY include/rmf_proj
   DESTINATION include
+)
+
+install(
+  EXPORT rmf_proj-targets
+  FILE rmf_proj-targets.cmake
+  NAMESPACE rmf_proj::
+  DESTINATION ${INSTALL_CONFIG_DIR}
+)
+
+export(
+  EXPORT rmf_proj-targets
+  FILE ${CMAKE_CURRENT_BINARY_DIR}/rmf_proj-targets.cmake
+  NAMESPACE rmf_proj::
 )
 
 export(PACKAGE rmf_proj)

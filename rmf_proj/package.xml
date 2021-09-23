@@ -15,6 +15,6 @@
   <test_depend>rmf_cmake_uncrustify</test_depend>
 
   <export>
-    <build_type>cmake</build_type>
+    <build_type>ament_cmake</build_type>
   </export>
 </package>
